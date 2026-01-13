@@ -2,6 +2,8 @@
 
 本文档说明在弱网（例如 20% 丢包、~25ms RTT）场景下，如何用 GOST 的 UDP 传输通道承载 SOCKS5 代理，并给出推荐配置与调优思路。
 
+另有一份面向多边缘节点的汇聚方案，包含 Relay/RTCP、反向映射、公网暴露与 Kasm 透明代理等实践，见 `edge-socks5-relay.md`。
+
 ## 可选传输通道
 
 - **KCP**：基于 UDP，具备前向纠错和拥塞/重传调优，弱网首选。参考 `docs/en/docs/reference/listeners/kcp.md` 与 `docs/en/docs/reference/dialers/kcp.md`。
