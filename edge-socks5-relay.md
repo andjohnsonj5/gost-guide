@@ -91,9 +91,15 @@ gost -L rtcp://127.0.0.1:21080/127.0.0.1:1080 -F relay+wss://HUB_PUBLIC_IP:8443
 curl --socks5-hostname 127.0.0.1:21080 https://example.com
 ```
 
-## Kasm 浏览器访问
+## Chrome 浏览器访问
 
-Kasm 浏览器只要能访问到 SOCKS5 地址即可使用。若无法直接设置代理参数，可选以下“透明化”方案：
+Chrome 只要能访问到 SOCKS5 地址即可使用，可直接在启动参数或系统代理中设置：
+
+```bash
+google-chrome --proxy-server="socks5://user:pass@HUB_PUBLIC_IP:21080"
+```
+
+若不便配置代理参数，可选以下“透明化”方案：
 
 ### 方案 A：TUN 透明代理（推荐）
 
@@ -101,7 +107,7 @@ Kasm 浏览器只要能访问到 SOCKS5 地址即可使用。若无法直接设�
 gost -L tun://:0?net=192.168.123.1/24&mtu=1420 -F socks5://user:pass@HUB_PUBLIC_IP:21080
 ```
 
-将 Kasm 流量路由到该 TUN 网段即可。
+将 Chrome 相关流量路由到该 TUN 网段即可。
 
 ### 方案 B：nftables 重定向（RED/TProxy）
 
@@ -109,7 +115,7 @@ gost -L tun://:0?net=192.168.123.1/24&mtu=1420 -F socks5://user:pass@HUB_PUBLIC_
 gost -L red://:12345 -F socks5://user:pass@HUB_PUBLIC_IP:21080
 ```
 
-再用 nftables 将 Kasm 出站流量重定向到 `:12345`。
+再用 nftables 将 Chrome 出站流量重定向到 `:12345`。
 
 ## 安全建议
 
