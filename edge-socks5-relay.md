@@ -99,24 +99,6 @@ Chrome 只要能访问到 SOCKS5 地址即可使用，可直接在启动参数�
 google-chrome --proxy-server="socks5://user:pass@HUB_PUBLIC_IP:21080"
 ```
 
-若不便配置代理参数，可选以下“透明化”方案：
-
-### 方案 A：TUN 透明代理（推荐）
-
-```bash
-gost -L tun://:0?net=192.168.123.1/24&mtu=1420 -F socks5://user:pass@HUB_PUBLIC_IP:21080
-```
-
-将 Chrome 相关流量路由到该 TUN 网段即可。
-
-### 方案 B：nftables 重定向（RED/TProxy）
-
-```bash
-gost -L red://:12345 -F socks5://user:pass@HUB_PUBLIC_IP:21080
-```
-
-再用 nftables 将 Chrome 出站流量重定向到 `:12345`。
-
 ## 安全建议
 
 - 公网暴露务必开启 SOCKS5 认证。
