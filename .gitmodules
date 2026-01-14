@@ -1,9 +1,9 @@
 [submodule "core"]
 	path = core
-	url = https://github.com/go-gost/core.git
+	url = ssh://git@github.com/go-gost/core.git
 [submodule "docs"]
 	path = docs
-	url = https://github.com/go-gost/docs.git
+	url = ssh://git@github.com/go-gost/docs.git
 [submodule "gost"]
 	path = gost
-	url = https://github.com/go-gost/gost.git
+	url = ssh://git@github.com/go-gost/gost.git
